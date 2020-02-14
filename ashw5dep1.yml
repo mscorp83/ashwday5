@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: ashwdep5
+  name: ashwdep5
+  namespace: ashwin
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ashwdep5
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: ashwdep5
+    spec:
+      containers:
+      - image: dockerashw/ashwday5
+        name: ashwday5
+        imagePullPolicy: Always
+        resources: {}
+status: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: day5ashwjensvc
+  name: day5ashwjensvc
+  namespace: ashwin
+spec:
+  ports:
+  - name: "80"
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: ashwdep5
+  type: NodePort
+status:
+  loadBalancer: {}
